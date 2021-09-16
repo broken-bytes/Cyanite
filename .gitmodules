@@ -1,0 +1,3 @@
+[submodule "external/magnum"]
+	path = external/magnum
+	url = git@github.com:mosra/magnum.git
