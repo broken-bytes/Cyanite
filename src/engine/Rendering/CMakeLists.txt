@@ -81,7 +81,7 @@ target_include_directories(${bimg}
 target_link_libraries(${bimg} PUBLIC ${astcodec})
 
 
-add_library(Rendering Renderer.hxx Renderer.cxx)
+add_library(Rendering Renderer.hxx Renderer.cxx Color.hxx)
 target_include_directories(Rendering
     PUBLIC
     ${CMAKE_SOURCE_DIR}/external/bgfx/include

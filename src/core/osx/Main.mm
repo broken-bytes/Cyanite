@@ -8,7 +8,6 @@ int main(int argc, const char *argv[]) {
     [window1 setIsVisible:YES];
     [NSApplication sharedApplication];
     
-    wind
     auto engine = new BrokenBytes::Cyanite::Engine::CyaniteEngine(window1, 300, 300);
     engine->Run();
 
