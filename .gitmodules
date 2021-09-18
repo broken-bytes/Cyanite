@@ -29,7 +29,7 @@
 	path = external/soloud
 	url = https://github.com/jarikomppa/soloud
 [submodule "Nuklear"]
-	path = Nuklear
+	path = external/Nuklear
 	url = https://github.com/Immediate-Mode-UI/Nuklear.git
 [submodule "external/entt"]
 	path = external/entt
