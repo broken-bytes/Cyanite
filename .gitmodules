@@ -55,3 +55,21 @@
 [submodule "external/Nuklear"]
 	path = external/Nuklear
 	url = https://github.com/Immediate-Mode-UI/Nuklear.git
+[submodule "external/cereal"]
+	path = external/cereal
+	url = https://github.com/USCiLab/cereal.git
+[submodule "external/yaml-cpp"]
+	path = external/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "external/tomcrypt"]
+	path = external/tomcrypt
+	url = https://github.com/libtom/libtomcrypt.git
+[submodule "external/sqlitecpp"]
+	path = external/sqlitecpp
+	url = https://github.com/SRombauts/SQLiteCpp.git
+[submodule "external/stb"]
+	path = external/stb
+	url = https://github.com/nothings/stb.git
+[submodule "external/inja"]
+	path = external/inja
+	url = https://github.com/pantor/inja.git
