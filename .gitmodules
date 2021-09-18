@@ -4,3 +4,54 @@
 [submodule "external/PhysX"]
 	path = external/PhysX
 	url = git@github.com:NVIDIAGameWorks/PhysX.git
+[submodule "external/imgui"]
+	path = external/imgui
+	url = git@github.com:ocornut/imgui.git
+[submodule "external/loguru"]
+	path = external/loguru
+	url = git@github.com:emilk/loguru.git
+[submodule "external/cef"]
+	path = external/cef
+	url = https://github.com/chromiumembedded/cef.git
+[submodule "external/blaze"]
+	path = external/blaze
+	url = https://bitbucket.org/blaze-lib/blaze.git
+[submodule "external/Vc"]
+	path = external/Vc
+	url = https://github.com/VcDevel/Vc.git
+[submodule "external/json.h"]
+	path = external/json.h
+	url = https://github.com/sheredom/json.h.git
+[submodule "external/bgfx"]
+	path = external/bgfx
+	url = https://github.com/bkaradzic/bgfx.git
+[submodule "external/soloud"]
+	path = external/soloud
+	url = https://github.com/jarikomppa/soloud
+[submodule "Nuklear"]
+	path = Nuklear
+	url = https://github.com/Immediate-Mode-UI/Nuklear.git
+[submodule "external/entt"]
+	path = external/entt
+	url = https://github.com/skypjack/entt.git
+[submodule "external/astar-cpp"]
+	path = external/astar-cpp
+	url = https://github.com/justinhj/astar-algorithm-cpp.git
+[submodule "external/draco"]
+	path = external/draco
+	url = https://github.com/google/draco.git
+[submodule "external/assimp"]
+	path = external/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "external/arrayfire"]
+	path = external/arrayfire
+	url = https://github.com/arrayfire/arrayfire.git
+[submodule "external/mimalloc"]
+	path = external/mimalloc
+	url = https://github.com/arrayfire/arrayfire.git
+[submodule "external/GameNetworkingSockets"]
+	path = external/GameNetworkingSockets
+	url = https://github.com/ValveSoftware/GameNetworkingSockets.git
+[submodule "external/ozz-animation"]
+	path = external/ozz-animation
+	url = https://github.com/guillaumeblanc/ozz-animation.git
