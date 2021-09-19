@@ -17,7 +17,7 @@ set(SRC src/core/Globals.hxx src/core/Main.hxx src/core/Entry.hxx)
 if(APPLE)
 set(SRC_OSX src/core/osx/Main.mm)
 
-add_executable(${CYANITE} MACOSX_BUNDLE ${SRC} ${SRC_OSX})
+add_executable(${CYANITE} ${SRC} ${SRC_OSX})
 find_library(COCOA_LIBRARY Cocoa)
 set_target_properties(
     ${CYANITE}

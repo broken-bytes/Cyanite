@@ -4,6 +4,7 @@
 #include "../../core/Globals.hxx"
 #include "Color.hxx"
 
+
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 
 struct PixelResource {
@@ -26,5 +27,9 @@ public:
     auto Init(Window window, uint16_t width, uint16_t height) -> void;
     auto Update() -> void;
     auto Deinit() -> void;
+    
+    auto AddResource(PixelResource resource);
+    
+private:
 };
 }

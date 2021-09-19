@@ -1,8 +1,10 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include <Globals.hxx>
-
+#include "Worlds/World.hxx"
+#include "Entity.hxx"
 
 namespace BrokenBytes::Cyanite::Engine {
 class CyaniteEngine {
@@ -11,5 +13,6 @@ public:
     auto Run() -> void;
 private:
     void* _renderer;
+    std::vector<Entity> _entities;
 };
 }

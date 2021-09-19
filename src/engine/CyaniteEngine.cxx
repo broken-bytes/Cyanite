@@ -9,9 +9,7 @@ namespace BrokenBytes::Cyanite::Engine {
 CyaniteEngine::CyaniteEngine(Window window, uint16_t width, uint16_t height) {
     auto ren = new Rendering::Renderer();
     ren->Init(window, width, height);
-    this->_renderer = ren;
-    
-    printf("%s\n", "CYANITE INIT");
+    this->_renderer = ren;    
 }
 
 auto CyaniteEngine::Run() -> void {
