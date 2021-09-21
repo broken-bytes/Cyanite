@@ -3,7 +3,7 @@
 #include "Renderer.hxx"
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
-Renderer::Renderer() {
+Renderer::Renderer(RendererBackendType backend) {
     
 }
 

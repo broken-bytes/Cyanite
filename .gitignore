@@ -35,6 +35,11 @@
 # Builds
 build/
 Build/
+builds
+builds/
+
+.vs
+.vs/
 
 # CMake
 MakeLists.txt.user

@@ -1,19 +1,15 @@
 #pragma once
 
+#include <memory>
 #include <stdint.h>
 #include "../../core/Globals.hxx"
 #include "Color.hxx"
+#include "RenderBackend.hxx"
 
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 
-struct PixelResource {
-    uint16_t x;
-    uint16_t y;
-    ColorRGB<uint8_t> color;
-};
-
-enum class RendererBackend: uint8_t {
+enum class RendererBackendType: uint8_t {
     OpenGL,
     Vulkan,
     Direct3D12,
@@ -22,14 +18,12 @@ enum class RendererBackend: uint8_t {
 
 class Renderer {
 public:
-    Renderer();
+    Renderer(RendererBackendType backend);
     
     auto Init(Window window, uint16_t width, uint16_t height) -> void;
     auto Update() -> void;
-    auto Deinit() -> void;
-    
-    auto AddResource(PixelResource resource);
-    
+    auto Deinit() -> void;    
 private:
+    std::unique_ptr<RenderBackend> _backend;
 };
 }

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -13,11 +13,12 @@ set(ID "dev.broken-bytes.cyanite.engine")
 set(COPY "© 2021 - Broken Bytes")
 
 set(SRC src/core/Globals.hxx src/core/Main.hxx src/core/Entry.hxx)
+add_executable(${CYANITE} ${SRC})
+
 
 if(APPLE)
 set(SRC_OSX src/core/osx/Main.mm)
-
-add_executable(${CYANITE} ${SRC} ${SRC_OSX})
+target_sources(${CYANITE  PUBLIC ${SRC_OSX})
 find_library(COCOA_LIBRARY Cocoa)
 set_target_properties(
     ${CYANITE}
@@ -29,13 +30,18 @@ set(MACOSX_BUNDLE_BUNDLE_VERSION ${VERSION})
 set(MACOSX_BUNDLE_COPYRIGHT $COPY)
 set(MACOSX_BUNDLE_INFO_STRING ${INFO})
 set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
+endif()
 
+if(WIN32)
+set(SRC_WIN src/core/win32/Main.cxx)
+target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
 
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
 
 target_link_libraries(${CYANITE} PUBLIC Engine)
+
 target_include_directories(${CYANITE} PUBLIC src/engine)
 
 
