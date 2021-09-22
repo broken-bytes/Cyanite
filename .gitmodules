@@ -88,6 +88,6 @@
 [submodule "external/crossshader"]
 	path = external/crossshader
 	url = https://github.com/alaingalvan/crossshader.git
-[submodule "external\\ShaderConstructor#"]
-	path = "external\\ShaderConstructor#"
-	url = https://github.com/microsoft/ShaderConductor.git
+[submodule "external/GSL"]
+	path = external/GSL
+	url = https://github.com/microsoft/GSL.git
