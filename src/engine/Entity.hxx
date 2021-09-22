@@ -1,7 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <uuid.h>
+#include <uuid/uuid.h>
+#include <inka>
 #include <inja/inja.hpp>
 
 #include "Component.hxx"

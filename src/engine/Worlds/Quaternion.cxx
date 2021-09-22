@@ -6,6 +6,12 @@
 #include "Vector3D.hxx"
 
 namespace BrokenBytes::Cyanite::Engine::World {
+#ifdef MSVC
+constexpr double PI = std::numbers::pi;
+#elif __APPLE__
+constexpr double PI = 3.14;
+#endif
+
     Quaternion::Quaternion() : Quaternion(0, 0, 0, 0) {}
 
     Quaternion::Quaternion(float w, float x, float y, float z) {
@@ -34,7 +40,7 @@ namespace BrokenBytes::Cyanite::Engine::World {
         // pitch (y-axis rotation)
         float sinp = 2 * (this->w * this->y - this->z * this->x);
         if (std::abs(sinp) >= 1)
-            euler.y = std::copysign(std::numbers::pi / 2, sinp); // use 90 degrees if out of range
+            euler.y = std::copysign(PI / 2, sinp); // use 90 degrees if out of range
         else
             euler.y = std::asin(sinp);
 

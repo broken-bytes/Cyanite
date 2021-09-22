@@ -85,9 +85,6 @@
 [submodule "external/stduuid"]
 	path = external/stduuid
 	url = https://github.com/mariusbancila/stduuid.git
-[submodule "external\\GSL"]
-	path = external\\GSL
-	url = https://github.com/microsoft/GSL.git
 [submodule "external/crossshader"]
 	path = external/crossshader
 	url = https://github.com/alaingalvan/crossshader.git

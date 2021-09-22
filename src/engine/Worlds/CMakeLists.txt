@@ -4,8 +4,3 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 add_library(Worlds World.hxx World.cxx Vector2D.hxx Vector3D.hxx Vector3D.cxx Quaternion.hxx Quaternion.cxx Matrix4x4.hxx Matrix4x4.cxx Transform.hxx)
-
-find_package(ArrayFire)
-target_link_libraries(Worlds ArrayFire::af)
-
-target_include_directories(Worlds PUBLIC /opt/arrayfire/include)

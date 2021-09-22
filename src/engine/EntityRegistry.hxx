@@ -4,7 +4,7 @@
 
 #include "Component.hxx"
 #include "EntitySet.hxx"
-#include <uuid.h>
+#include <uuid/uuid.h>
 
 namespace BrokenBytes::Cyanite::Engine {
 	struct Entity;
