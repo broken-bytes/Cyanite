@@ -10,13 +10,13 @@ namespace BrokenBytes::Cyanite::Engine {
 		Transform(): Transform({0,0,0}, {0,0,0,0}) {
 		}
 
-		Transform(World::Vector3D<float> pos, World::Quaternion<float> rot):Component(typeid(Transform).name()) {
+		Transform(World::Vector3D pos, World::Quaternion rot):Component(typeid(Transform).name()) {
 			position = pos;
 			rotation = rot;
 		}
 
-		World::Vector3D<float> position;
-		World::Quaternion<float> rotation;
+		World::Vector3D position;
+		World::Quaternion rotation;
 	};
 #pragma pack(pop)
 }

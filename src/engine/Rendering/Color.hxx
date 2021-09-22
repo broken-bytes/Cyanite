@@ -3,22 +3,16 @@
 
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
-template <typename T,
-          std::enable_if_t<std::is_integral<T>::value, bool> = true
->
 struct ColorRGBA {
-    T r;
-    T g;
-    T b;
-    T a;
+    float r;
+    float g;
+    float b;
+    float a;
 };
 
-template <typename T,
-          std::enable_if_t<std::is_integral<T>::value, bool> = true
->
 struct ColorRGB {
-    T r;
-    T g;
-    T b;
+    float r;
+    float g;
+    float b;
 };
 }

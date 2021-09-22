@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <vector>
-#include <Globals.hxx>
+#include <../core/Globals.hxx>
 #include "Worlds/World.hxx"
 #include "Entity.hxx"
 #include "EntityRegistry.hxx"

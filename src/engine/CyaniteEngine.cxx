@@ -2,7 +2,7 @@
 #include <thread>
 #include <mutex>
 
-#include <Globals.hxx>
+#include <../core/Globals.hxx>
 #include "Rendering/Renderer.hxx"
 #include "CyaniteEngine.hxx"
 

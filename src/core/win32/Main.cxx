@@ -1,4 +1,3 @@
-#include "Main.hxx"
 #include <CyaniteEngine.hxx>
 
 int main(int argc, char** argv) {
