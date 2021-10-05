@@ -94,3 +94,6 @@
 [submodule "external\\ShaderConstructor#"]
 	path = "external\\ShaderConstructor#"
 	url = https://github.com/microsoft/ShaderConductor.git
+[submodule "external/dx12-headers"]
+	path = external/dx12-headers
+	url = https://github.com/microsoft/DirectX-Headers.git

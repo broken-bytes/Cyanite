@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <stdint.h>
-#include "../../core/Globals.hxx"
+#include <Globals.hxx>
 #include "Color.hxx"
 #include "RenderBackend.hxx"
 
@@ -18,9 +18,13 @@ enum class RendererBackendType: uint8_t {
 
 class Renderer {
 public:
-    Renderer(RendererBackendType backend);
-    
-    auto Init(Window window, uint16_t width, uint16_t height) -> void;
+    Renderer(
+        Window window,
+        uint16_t width,
+        uint16_t height,
+        RendererBackendType backend
+    );
+    auto Init() -> void;
     auto Update() -> void;
     auto Deinit() -> void;    
 private:

@@ -6,9 +6,11 @@ using namespace winrt;
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 
 	RenderBackendD3D12::RenderBackendD3D12(
+		Window window,
 		uint16_t width,
-		uint16_t height): RenderBackend(width, height) {}
+		uint16_t height): RenderBackend(window, width, height) {}
 
+	RenderBackendD3D12::~RenderBackendD3D12() {}
 
 	auto RenderBackendD3D12::Init() -> void {}
 
@@ -26,5 +28,7 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 	
 	auto RenderBackendD3D12::LoadContexts() -> void {}
 	
-	auto RenderBackendD3D12::VRAM() -> uint64_t {}
+	auto RenderBackendD3D12::VRAM() -> uint64_t {
+		return 0;
+	}
 }
