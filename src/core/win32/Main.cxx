@@ -1,19 +1,15 @@
 #include <Globals.hxx>
 #include <Windowsx.h>
 
-#include <CyaniteEngine.hxx>
 
-#include "InputEvent.hxx"
-#include "MouseEvent.hxx"
+#include <InputEvent.hxx>
+#include <MouseEvent.hxx>
 
 constexpr LPCSTR CLASS_NAME = "CYANITE_MAIN_WIN";
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-using namespace BrokenBytes::Cyanite::Engine;
-
-std::unique_ptr<CyaniteEngine> engine;
-
+void RunSwiftEngine(HWND hwnd);
 
 
 int WINAPI wWinMain(
@@ -56,13 +52,7 @@ int WINAPI wWinMain(
 	ShowWindow(hwnd, nCmdShow);
 	RECT winRect{};
 	GetWindowRect(hwnd, &winRect);
-
-	engine = std::make_unique<CyaniteEngine>(
-		hwnd,
-		static_cast<uint16_t>(std::floor(winRect.right - winRect.left)),
-		static_cast<uint16_t>(std::floor(winRect.top - winRect.bottom))
-		);
-
+	RunSwiftEngine(hwnd);
 
 	// Run the message loop.
 
@@ -71,7 +61,6 @@ int WINAPI wWinMain(
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
-		engine->Run();
 	}
 
 	return 0;
@@ -97,21 +86,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_MBUTTONUP:
 		break;
 	case WM_MOUSEMOVE:
-		engine->AddEvent(new Events::MouseEvent{
-			static_cast<uint16_t>(GET_X_LPARAM(lParam)),
-			static_cast<uint16_t>(GET_Y_LPARAM(lParam)) });
+
 		break;
 	case WM_KEYUP:
-		engine->AddEvent( new Events::InputEvent{
-			KeyCode(wParam),
-			false
-			});
+	
 		break;
 	case WM_KEYDOWN:
-		engine->AddEvent(new Events::InputEvent{
-			KeyCode(wParam),
-			true
-			});
+		
 		break;
 
 	case WM_DESTROY:
@@ -133,4 +114,32 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	}
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+
+void LogFunc(char* title, char* msg) {
+}
+
+void RunSwiftEngine(HWND hwnd) {
+	/* get handle to dll */
+	HINSTANCE hGetProcIDDLL = LoadLibrary("C:\\Users\\Marcel\\Documents\\Cyanite\\src\\api\\build\\bin\\Engine.dll");
+
+	
+	/* get pointer to the function in the dll*/
+	FARPROC lpfnGetProcessID = GetProcAddress(
+		HMODULE(hGetProcIDDLL),
+		"$s6Engine06createA04withySpySo6HWND__VG_tF");
+
+	typedef int(__stdcall* pICFUNC)(HWND);
+	pICFUNC MyFunction = pICFUNC(lpfnGetProcessID);
+	
+	/* The actual call to the function contained in the dll */
+	int result = MyFunction(hwnd);
+	std::stringstream str;
+	str << "The add numbers func";
+	str << result;
+	/* Release the Dll */
+	//FreeLibrary(hGetProcIDDLL);
+
+	/* The return val from the dll */
 }

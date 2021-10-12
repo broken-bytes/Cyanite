@@ -19,7 +19,7 @@ namespace BrokenBytes::Cyanite::Engine {
 	uint64_t count = 0;
 	std::mutex mutex;
 	CyaniteEngine::CyaniteEngine(Window window, uint16_t width, uint16_t height) {
-		Logging::Create();
+		CreateLogger();
 #if _WIN32
 		this->_renderer = std::make_unique<Rendering::Renderer>(
 			window,
@@ -41,9 +41,9 @@ namespace BrokenBytes::Cyanite::Engine {
 		while (!_eventQueue.Empty()) {
 			auto event = _eventQueue.Pop();
 			auto result = dynamic_cast<Events::InputEvent*>(event.get()) != nullptr;
-			if(result) Logging::Log({"IS Input", "The event is an input event"});
+			//if(result) Log({"IS Input", "The event is an input event"});
 			result = dynamic_cast<Events::MouseEvent*>(event.get()) != nullptr;
-			if (result) Logging::Log({ "IS Input", "The event is a mouse event" });
+			//if (result) Log({ "IS Input", "The event is a mouse event" });
 		}
 		this->_renderer->Update();
 	}

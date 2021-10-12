@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <vector>
-#include <eventpp/eventqueue.h>
 #include <Globals.hxx>
 #include "Worlds/World.hxx"
 #include "Entity.hxx"

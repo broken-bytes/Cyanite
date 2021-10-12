@@ -19,7 +19,7 @@ set(INFO "A cross platform game engine")
 set(ID "dev.broken-bytes.cyanite.engine")
 set(COPY "© 2021 - Broken Bytes")
 
-set(SRC src/core/Main.hxx src/core/Entry.hxx)
+set(SRC src/core/Main.hxx)
 
 
 if(APPLE)
@@ -50,10 +50,10 @@ endif()
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
 
-target_link_libraries(${CYANITE} PUBLIC Engine)
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 
 target_include_directories(${CYANITE} PUBLIC src)
-target_include_directories(${CYANITE} PUBLIC src/engine)
+target_include_directories(${CYANITE} PUBLIC src/engine/)
+target_include_directories(${CYANITE} PUBLIC src/engine/Events)
 
 
