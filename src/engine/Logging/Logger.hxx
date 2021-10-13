@@ -6,6 +6,6 @@
 #include "../../Globals.hxx"
 extern "C" {
 	DLL_EXPORT auto CreateLogger() -> void;
-	DLL_EXPORT auto Log(char* title, char* message, uint8_t level) -> void;
-	DLL_EXPORT auto Test(int x, int y) -> void;
+	DLL_EXPORT auto Log(int32_t* message, size_t len, uint8_t level) -> void;
+	DLL_EXPORT auto Test(int x, int y) -> int;
 }

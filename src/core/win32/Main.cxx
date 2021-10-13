@@ -12,6 +12,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void RunSwiftEngine(HWND hwnd);
 
 
+int main(int argc, char** argv) {
+	RunSwiftEngine(nullptr);
+}
+
+
 int WINAPI wWinMain(
 	HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,

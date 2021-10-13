@@ -41,7 +41,7 @@ set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
 endif()
 
 if(WIN32)
-add_executable(${CYANITE} WIN32 ${SRC})
+add_executable(${CYANITE} ${SRC})
 
 set(SRC_WIN src/core/win32/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})

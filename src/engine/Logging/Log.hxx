@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum class LogLevel {
+enum class LogLevel: uint8_t {
 	Verbose,
 	Info,
 	Warn,

@@ -13,14 +13,13 @@ public class Engine {
 
     public init(with window: HWND) {
         self.window = window
-        logger = Logger()        
+        logger = Logger()
     }
 
     deinit {
-        
+
     }
     
-
     func update() -> Void {
 
     }
