@@ -95,16 +95,19 @@ auto CreateLogger() -> void {
 	Init(ATTACH_PARENT_PROCESS);
 }
 
-auto Log(int32_t* message, size_t len, uint8_t level) -> void {
+auto Log(const char* message, size_t len, uint8_t level) -> void {
 	LPDWORD written = {};
-	printf("0x%p\n", message);
 	std::stringstream str;
+
+	auto addr = reinterpret_cast<int32_t*>(message[24]);
 
 	char* printStr = new char[len + 1];
 
 	for(int x = 0; x < len; x++) {		
 		printStr[x] = static_cast<char>(message[x]);
 	}
+
+
 	
 	printStr[len] = '\0';
 	auto l = strlen(printStr);
@@ -157,7 +160,7 @@ auto Log(int32_t* message, size_t len, uint8_t level) -> void {
 	str << data;
 	str << " | ";
 	str << " ";
-	str << printStr;
+	str << message;
 	str << "\n";
 
 	auto result = WriteConsoleA(
@@ -180,7 +183,6 @@ auto Init(uint64_t pid) -> void {
 	if (AllocConsole()) {
 		AttachConsole(pid);
 		console = GetStdHandle(STD_OUTPUT_HANDLE);
-		printf("%s\n", "Console Alloc");
 	}
 	else {
 		throw "Could not create output console";

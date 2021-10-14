@@ -127,13 +127,14 @@ void LogFunc(char* title, char* msg) {
 
 void RunSwiftEngine(HWND hwnd) {
 	/* get handle to dll */
-	HINSTANCE hGetProcIDDLL = LoadLibrary("C:\\Users\\Marcel\\Documents\\Cyanite\\src\\api\\build\\bin\\Engine.dll");
+	HINSTANCE hGetProcIDDLL = 
+		LoadLibrary("C:\\Users\\Marcel\\Documents\\Cyanite\\src\\api\\.build\\x86_64-unknown-windows-msvc\\debug\\CyaniteScripting.dll");
 
 	
 	/* get pointer to the function in the dll*/
 	FARPROC lpfnGetProcessID = GetProcAddress(
 		HMODULE(hGetProcIDDLL),
-		"$s6Engine06createA04withySpySo6HWND__VG_tF");
+		"$s8Internal12createEngine4withySpySo6HWND__VG_tF");
 
 	typedef int(__stdcall* pICFUNC)(HWND);
 	pICFUNC MyFunction = pICFUNC(lpfnGetProcessID);

@@ -4,11 +4,11 @@ import let WinSDK.MB_OK
 import struct WinSDK.UINT
 import Foundation
 
-fileprivate typealias Log = @convention(c)([Int32], Int, UInt8) -> Void
+fileprivate typealias Log = @convention(c)([Int8], Int, UInt8) -> Void
+fileprivate var logFunc: Log!
 
 public class Logger {
     fileprivate var logLib: HINSTANCE!
-    fileprivate var logFunc: Log!
 
     
     init() {
@@ -17,21 +17,18 @@ public class Logger {
         var startProc = GetProcAddress(HMODULE(logLib), "CreateLogger")
         withUnsafePointer(to: GetProcAddress(HMODULE(logLib), "Log")) { ptr in 
             let rawPtr = UnsafeRawPointer(ptr)
-            self.logFunc = rawPtr.load(as: Log.self)
+            logFunc = rawPtr.load(as: Log.self)
         }  
+        startProc!()
 
-        self.log(message: "Test", level: 1)
+        log(message: "123456", level: 2)
+        log(message: "ABCDEF", level: 2)
     }
+}
 
-    public func log(message: String, level: UInt8) {
-        var data: [Int32] = []
 
-        for c in message {
-            withUnsafePointer(to: c)  { ptr in 
-                data.append(UnsafeRawPointer(ptr).load(as: Int32.self))
-            }
-        }
-
-        self.logFunc(data, message.count, 1)
-    }
+public func log(message: String, level: UInt8) {
+        var cString = message.cString(using: .ascii)!
+        
+        logFunc(cString.reversed(),  message.count, 1)
 }
