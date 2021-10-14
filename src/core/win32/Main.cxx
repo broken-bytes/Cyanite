@@ -1,6 +1,7 @@
 #include <Globals.hxx>
 #include <Windowsx.h>
-
+#include <io.h>
+#include <fcntl.h>
 
 #include <InputEvent.hxx>
 #include <MouseEvent.hxx>
@@ -138,7 +139,6 @@ void RunSwiftEngine(HWND hwnd) {
 
 	typedef int(__stdcall* pICFUNC)(HWND);
 	pICFUNC MyFunction = pICFUNC(lpfnGetProcessID);
-	
 	/* The actual call to the function contained in the dll */
 	int result = MyFunction(hwnd);
 	std::stringstream str;

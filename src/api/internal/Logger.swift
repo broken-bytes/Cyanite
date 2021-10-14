@@ -6,29 +6,71 @@ import Foundation
 
 fileprivate typealias Log = @convention(c)([Int8], Int, UInt8) -> Void
 fileprivate var logFunc: Log!
+fileprivate let CP_UNICODE_8: DWORD = 65001
+
+
+public enum LogLevel: UInt {
+    case Verbose
+    case Info
+    case Warning
+    case Error
+    case FatalError
+}
 
 public class Logger {
     fileprivate var logLib: HINSTANCE!
+    fileprivate var console: HANDLE!
 
     
     init() {
-        self.logLib = LoadLibraryA("C:\\Users\\Marcel\\Documents\\Cyanite\\build\\src\\engine\\Logging\\Debug\\Logging.dll")
-        
-        var startProc = GetProcAddress(HMODULE(logLib), "CreateLogger")
-        withUnsafePointer(to: GetProcAddress(HMODULE(logLib), "Log")) { ptr in 
-            let rawPtr = UnsafeRawPointer(ptr)
-            logFunc = rawPtr.load(as: Log.self)
-        }  
-        startProc!()
+        if(AllocConsole()) {
+            AttachConsole(0)
+            self.console = GetStdHandle(STD_OUTPUT_HANDLE)
+            SetConsoleMode(self.console, CP_UNICODE_8)
+       }
+       self.log(message: "String \u{1F389}", with: .Error)
+    }
 
-        log(message: "123456", level: 2)
-        log(message: "ABCDEF", level: 2)
+    public func log(message: String, with level: LogLevel) {
+        let date = Date()
+        let dateStr = date.description
+        var written: DWORD = 0
+        withUnsafePointer(to: message.count + dateStr.count + 3) { ptr in 
+        	switch (level) {
+	            case .Verbose:
+		            SetConsoleTextAttribute(
+			            console,
+			            0x0F);
+		break;
+	case .Info:
+		SetConsoleTextAttribute(
+			console,
+			0x07);
+		break;
+	case .Warning:
+		SetConsoleTextAttribute(
+			console,
+			0x06);
+		break;
+	case .Error:
+		SetConsoleTextAttribute(
+			console,
+			0x04);
+		break;
+	case .FatalError:
+		SetConsoleTextAttribute(
+			console,
+			0x0D);
+		break;
+	}
+              WriteConsoleA(
+                    self.console,
+		            Date().description + " | " + message,
+		            UnsafeRawPointer(ptr).load(as: UInt32.self),
+		            &written,
+		            nil);
+        }
     }
 }
 
 
-public func log(message: String, level: UInt8) {
-        var cString = message.cString(using: .ascii)!
-        
-        logFunc(cString.reversed(),  message.count, 1)
-}
