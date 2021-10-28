@@ -8,5 +8,8 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(WIN32)
+    add_library(Logging SHARED Logger.hxx win32/Logger.cxx Log.hxx)
+    target_include_directories(Logging PUBLIC ${CMAKE_SOURCE_DIR}/src)
+endif()
 
-add_library(Worlds World.hxx World.cxx Vector2D.hxx Vector3D.hxx Vector3D.cxx Quaternion.hxx Quaternion.cxx Matrix4x4.hxx Matrix4x4.cxx Transform.hxx)

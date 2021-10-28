@@ -1,7 +1,7 @@
 #pragma once
 
-#include <d3d12.h>
-#include "d3d12/d3dx12.h"
+#include <directx/d3d12.h>
+#include <directx/d3dx12.h>
 #include <dxgi1_6.h>
 #include <cstdint>
 #include <winrt/base.h>
@@ -19,15 +19,15 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 	constexpr uint8_t FrameCount = 2;
 	constexpr uint8_t Contexts = 4;
 	constexpr uint8_t CommandLists = 16;
-	class RenderBackendD3D12: RenderBackend {
+	class RenderBackendD3D12 : public RenderBackend {
 	public:
-		RenderBackendD3D12(uint16_t width, uint16_t height);
+		RenderBackendD3D12(Window window, uint16_t width, uint16_t height);
+		~RenderBackendD3D12();
 		auto Init() -> void override;
 		auto Update() -> void override;
 		auto Render() -> void override;
 		auto Deinit() -> void override;
 		auto VRAM() -> uint64_t override;
-
 	private:
 		// Pipeline objects
 		CD3DX12_VIEWPORT _viewport;

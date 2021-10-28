@@ -1,13 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <uuid/uuid.h>
-#include <inka>
-#include <inja/inja.hpp>
+#include <uuid.h>
 
 #include "Component.hxx"
-
-using namespace inja;
 
 namespace BrokenBytes::Cyanite::Engine {
 	class ComponentNotFoundException : std::exception {
@@ -43,14 +39,13 @@ public:
 				return reinterpret_cast<C&>(comp);
 			}
 		}
-		auto msg = json();
-		msg["name"] = typeid(C).name();
-		msg["target"] = to_string(this->_uuid);
+
+		std::stringstream str;
+		str << typeid(C).name();
+		str << to_string(this->_uuid);
 		
 		throw ComponentNotFoundException(
-			render(
-				"Trying to access component {{ name }} which is not found on {{ target }}",
-				msg)
+			str.str()
 		);
 	}
 	auto operator==(const Entity& rhs) -> bool;

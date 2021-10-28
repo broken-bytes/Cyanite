@@ -88,6 +88,12 @@
 [submodule "external/crossshader"]
 	path = external/crossshader
 	url = https://github.com/alaingalvan/crossshader.git
+[submodule "external/dx12-headers"]
+	path = external/dx12-headers
+	url = https://github.com/microsoft/DirectX-Headers.git
+[submodule "external/crosswindow"]
+	path = external/crosswindow
+	url = https://github.com/alaingalvan/crosswindow.git
 [submodule "external/GSL"]
 	path = external/GSL
 	url = https://github.com/microsoft/GSL.git

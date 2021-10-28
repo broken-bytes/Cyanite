@@ -1,12 +1,18 @@
 cmake_minimum_required(VERSION 3.14)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20 /await")
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /await")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 endif()
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 project(Cyanite)
 set(CMAKE_SUPPRESS_REGENERATION true)
@@ -17,11 +23,12 @@ set(INFO "A cross platform game engine")
 set(ID "dev.broken-bytes.cyanite.engine")
 set(COPY "© 2021 - Broken Bytes")
 
-set(SRC src/core/Globals.hxx src/core/Main.hxx src/core/Entry.hxx)
-add_executable(${CYANITE} ${SRC})
+set(SRC src/core/Main.hxx)
 
 
 if(APPLE)
+add_executable(${CYANITE} ${SRC})
+
 set(SRC_OSX src/core/osx/Main.mm)
 target_sources(${CYANITE}  PUBLIC ${SRC_OSX})
 find_library(COCOA_LIBRARY Cocoa)
@@ -38,6 +45,8 @@ set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
 endif()
 
 if(WIN32)
+add_executable(${CYANITE} WIN32 ${SRC})
+
 set(SRC_WIN src/core/win32/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
@@ -45,9 +54,10 @@ endif()
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
 
-target_link_libraries(${CYANITE} PUBLIC Engine)
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 
-target_include_directories(${CYANITE} PUBLIC src/engine)
+target_include_directories(${CYANITE} PUBLIC src)
+target_include_directories(${CYANITE} PUBLIC src/engine/)
+target_include_directories(${CYANITE} PUBLIC src/engine/Events)
 
 
