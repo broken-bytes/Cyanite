@@ -1,4 +1,5 @@
 import WinSDK
+import SDLRaw
 
 var engine: Engine!
 
@@ -13,23 +14,21 @@ internal func createEngine(with window: HWND) {
 }
 
 internal func addEvent(with data: Event) {
-    engine.logger.log(message: "\(data.id): \(data.value)", with: .Verbose)
+    sysOut(message: "\(data.id): \(data.value)", with: .Verbose)
 }
 
 internal func addEvent(of type: Int64, with data: Int64) {
-    engine.logger.log(message: "\(type): \(data)", with: .Verbose)
+    sysOut(message: "\(type): \(data)", with: .Verbose)
 }
 
 public class Engine {
     let window: HWND
-    var logger: Logger
+    let sdl: SDLService
 
     public init(with window: HWND) {
         self.window = window
-        logger = Logger()
-        logger.log(message: "\(MemoryLayout<Event>.size)", with: .Error)
-        logger.log(message: "\(MemoryLayout<Event>.stride)", with: .Error)
-        logger.log(message: "\(MemoryLayout<Event>.alignment)", with: .Error)
+        loggerInit()
+        self.sdl = SDLService()
     }
 
     deinit {

@@ -18,10 +18,10 @@ struct Event {
 	uint64_t value;
 };
 
+
 typedef int(__stdcall* StartFunc)(HWND);
 typedef int(__stdcall* EventFunc)(int64_t, int64_t);
 typedef int(__stdcall* EventDataFunc)(Event);
-
 
 constexpr LPCSTR CLASS_NAME = "CYANITE_MAIN_WIN";
 
@@ -30,13 +30,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void RunSwiftEngine(HWND hwnd);
 void HandleInput();
 
-EventFunc SwiftEvent = nullptr;
-EventDataFunc SwiftEventData = nullptr;
-
-
 int main(int argc, char** argv) {
-	RunSwiftEngine(nullptr);
-
+	//RunSwiftEngine(nullptr);
 	return 0;
 }
 
@@ -61,7 +56,7 @@ int WINAPI wWinMain(
 	HWND hwnd = CreateWindowEx(
 		0,                              // Optional window styles.
 		CLASS_NAME,                     // Window class
-		"Cyanite 2022.0-rc",    // Window text
+		"Cyanite 2022.0-rc",			// Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
 
 		// Size and position
@@ -78,48 +73,12 @@ int WINAPI wWinMain(
 		return 0;
 	}
 
-	AllocConsole();
-	AttachConsole(0);
-	SetConsoleTitle("TEST");
 	ShowWindow(hwnd, nCmdShow);
 	RECT winRect{};
 	GetWindowRect(hwnd, &winRect);
 	auto console = GetStdHandle(STD_OUTPUT_HANDLE);
 	DWORD written;
-	SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
-	SDL_InitSubSystem(SDL_INIT_EVENTS);
-	SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-	SDL_InitSubSystem(SDL_INIT_HAPTIC);
-
-	int nJoysticks = SDL_NumJoysticks();
-	std::vector<SDL_GameController*> connectedControllers;
-	int numGamepads = 0;
-
-	// Count how many controllers there are
-	for (int i = 0; i < nJoysticks; i++)
-		if (SDL_IsGameController(i))
-			numGamepads++;
-
-	// If we have some controllers attached
-	if (numGamepads > 0)
-	{
-		for (int i = 0; i < numGamepads; i++)
-		{
-			// Open the controller and add it to our list
-			SDL_GameController* pad = SDL_GameControllerOpen(i);
-			if (SDL_GameControllerGetAttached(pad) == 1) {
-				connectedControllers.push_back(pad);
-			}
-			SDL_GameControllerSetLED(pad, 255, 0, 0);
-		}
-		SDL_GameControllerEventState(SDL_ENABLE);
-	}
-
-
-	auto err = SDL_GetError();
-
 	RunSwiftEngine(hwnd);
-	auto inputThread = std::thread(HandleInput);
 
 	// Run the message loop.
 
@@ -154,9 +113,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_MBUTTONUP:
 		break;
 	case WM_MOUSEMOVE:
-		if(SwiftEventData != nullptr) {
-			SwiftEventData({ 0, 1 });
-		}
 		break;
 	case WM_KEYUP:
 	
@@ -190,11 +146,9 @@ void HandleInput() {
 		switch (ev.type) {
 		case SDL_CONTROLLERAXISMOTION:
 			value = ev.caxis.value;
-			SwiftEvent(0, value);
 			break;
 		case SDL_JOYAXISMOTION:
 			value = ev.jaxis.value;
-			SwiftEvent(0, value);
 			break;
 		}
 	}
@@ -220,12 +174,6 @@ void RunSwiftEngine(HWND hwnd) {
 		HMODULE(hGetProcIDDLL),
 		"$s8Internal8addEvent2of4withys5Int64V_AFtF");
 
-	FARPROC addEventData = GetProcAddress(
-		HMODULE(hGetProcIDDLL),
-		"$s8Internal8addEvent4withyAA0C0V_tF");
-
-	SwiftEvent = EventFunc(addEventId);
-	SwiftEventData = EventDataFunc(addEventData);
 	//FreeLibrary(hGetProcIDDLL);
 
 	/* The return val from the dll */
