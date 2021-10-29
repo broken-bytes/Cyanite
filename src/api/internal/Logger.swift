@@ -23,19 +23,17 @@ public class Logger {
 
     
     init() {
-        if(AllocConsole()) {
-            AttachConsole(0)
-            self.console = GetStdHandle(STD_OUTPUT_HANDLE)
-            SetConsoleMode(self.console, CP_UNICODE_8)
-       }
-       self.log(message: "String \u{1F389}", with: .Error)
+        AttachConsole(0)
+        self.console = GetStdHandle(STD_OUTPUT_HANDLE)
+    	SetConsoleMode(self.console, CP_UNICODE_8)
+        self.log(message: "String \u{1F389}", with: .Error)
     }
 
     public func log(message: String, with level: LogLevel) {
         let date = Date()
         let dateStr = date.description
         var written: DWORD = 0
-        withUnsafePointer(to: message.count + dateStr.count + 3) { ptr in 
+        withUnsafePointer(to: message.count + dateStr.count + 4) { ptr in 
         	switch (level) {
 	            case .Verbose:
 		            SetConsoleTextAttribute(
@@ -65,7 +63,7 @@ public class Logger {
 	}
               WriteConsoleA(
                     self.console,
-		            Date().description + " | " + message,
+		            Date().description + " | " + message + "\n",
 		            UnsafeRawPointer(ptr).load(as: UInt32.self),
 		            &written,
 		            nil);

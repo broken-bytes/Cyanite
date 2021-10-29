@@ -49,11 +49,13 @@ endif()
 
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
+add_subdirectory(external/sdl)
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
-
 target_include_directories(${CYANITE} PUBLIC src)
+target_include_directories(${CYANITE} PUBLIC external/sdl/include)
 target_include_directories(${CYANITE} PUBLIC src/engine/)
 target_include_directories(${CYANITE} PUBLIC src/engine/Events)
 
+target_link_libraries(${CYANITE} PUBLIC SDL2-static)
 

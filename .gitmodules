@@ -97,3 +97,9 @@
 [submodule "external/crosswindow"]
 	path = external/crosswindow
 	url = https://github.com/alaingalvan/crosswindow.git
+[submodule ".\\external\\ControllerKit"]
+	path = .\\external\\ControllerKit
+	url = https://github.com/broken-bytes/ControllerKit
+[submodule "external/sdl"]
+	path = external/sdl
+	url = https://github.com/libsdl-org/SDL.git
