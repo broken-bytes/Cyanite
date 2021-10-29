@@ -4,6 +4,10 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20 /await")
+if(WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /await")
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 endif()
 
 set(CMAKE_CXX_STANDARD 20)
@@ -26,7 +30,7 @@ if(APPLE)
 add_executable(${CYANITE} ${SRC})
 
 set(SRC_OSX src/core/osx/Main.mm)
-target_sources(${CYANITE  PUBLIC ${SRC_OSX})
+target_sources(${CYANITE}  PUBLIC ${SRC_OSX})
 find_library(COCOA_LIBRARY Cocoa)
 set_target_properties(
     ${CYANITE}
