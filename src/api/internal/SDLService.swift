@@ -29,13 +29,14 @@ public class SDLService {
 
         var testData: [Int32] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         var count = testData.count;
-       
-        let int32Pointer = UnsafeMutablePointer<Int32>.allocate(capacity: 8)
-        int32Pointer.initialize(from: &testData, count: 8)
-        ModArr(int32Pointer, count)
+
+        let arr = NativeArray<Int32>(with: &testData)
+        ModArr(arr.rawData(), arr.count)
         
-        for x in 0..<8 {
-            sysOut(message: "The value is now \(int32Pointer[x])", with: .FatalError)
+        arr[3] = 100
+
+        for e in arr {
+            sysOut(message: "The value is now \(e)", with: .FatalError)
         }
 
         let thread = Thread {
