@@ -22,3 +22,27 @@ void NextEvent(GameControllerEvent* event) {
 void NextGameControllerEvent(GameControllerEvent* event) {
 
 }
+
+const char* ModStr(char* str) {
+    size_t len = strlen(str);
+    size_t newLen = strlen(str) + 5;
+    DWORD written = 0;
+    char* newStr = malloc(len + 5);
+    for(int x = 0; x < len; x++) {
+        newStr[x] = str[x];
+    }
+    newStr[len] = 'x';
+
+    for(int x = len; x < newLen - 1; x++) {
+        newStr[x] = 'x';
+    }
+    
+    newStr[newLen - 1] = '\0';
+    return newStr;
+}
+
+void ModArr(int32_t* arr, size_t length) {
+    for(int x = 0; x < length; x++) {
+        arr[x] = arr[x] * arr[x];
+    }
+}

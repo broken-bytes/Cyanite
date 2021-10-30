@@ -5,13 +5,14 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .library(name: "CyaniteScripting", type: .dynamic, targets: ["Internal", "Input", "SDLRaw"]),
+    .library(name: "CyaniteScripting", type: .dynamic, targets: ["Internal", "Input", "SDLRaw", "Bridge"]),
   ],
   targets: [
     .target(
       name: "Internal",
       dependencies: [
-        "SDLRaw"
+        "SDLRaw",
+        "Bridge"
       ],
       path: "Internal/",
       exclude: [
@@ -29,6 +30,20 @@ let CyaniteScripting = Package(
       path: "Input/",
       exclude: [
         "CMakeLists.txt",
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Bridge",
+      dependencies: [
+      ],
+      path: "Bridge/",
+      exclude: [
+      ],
+      cSettings: [
       ],
       swiftSettings: [
       ],

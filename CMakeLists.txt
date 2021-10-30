@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20 /await")
+endif()
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /await")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -50,6 +49,14 @@ add_executable(${CYANITE} WIN32 ${SRC})
 set(SRC_WIN src/core/win32/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
+
+
+SET(SDL_SRC
+    src/SDLx.h
+    src/SDLx.cpp
+)
+
+add_library(SDLx SHARED ${SDL_SRC})
 
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
