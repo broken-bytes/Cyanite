@@ -21,12 +21,12 @@ fileprivate var logLib: HINSTANCE!
 fileprivate var console: HANDLE!
 
 public func loggerInit() {
-	AllocConsole()
-        AttachConsole(0)
-		SetConsoleTitleA("CYANITE");
+	//AllocConsole()
+    //AttachConsole(0)
+	//SetConsoleTitleA("CYANITE");
 
-        console = GetStdHandle(STD_OUTPUT_HANDLE)
-    	SetConsoleMode(console, CP_UNICODE_8)
+    //console = GetStdHandle(STD_OUTPUT_HANDLE)
+    //SetConsoleMode(console, CP_UNICODE_8)
 }
 
 public func sysOut(message: String, with level: LogLevel) {
@@ -34,7 +34,8 @@ public func sysOut(message: String, with level: LogLevel) {
         let dateStr = date.description
         var written: DWORD = 0
         withUnsafePointer(to: message.count + dateStr.count + 4) { ptr in 
-        	switch (level) {
+        	/*
+			switch (level) {
 	            case .Verbose:
 		            SetConsoleTextAttribute(
 			            console,
@@ -67,5 +68,7 @@ public func sysOut(message: String, with level: LogLevel) {
 		            UnsafeRawPointer(ptr).load(as: UInt32.self),
 		            &written,
 		            nil);
+					*/
+					OutputDebugStringA( Date().description + " | " + message + "\n")
         }
     }

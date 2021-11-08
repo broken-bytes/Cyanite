@@ -4,7 +4,6 @@
 using namespace winrt;
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
-
 	RenderBackendD3D12::RenderBackendD3D12(
 		Window window,
 		uint16_t width,

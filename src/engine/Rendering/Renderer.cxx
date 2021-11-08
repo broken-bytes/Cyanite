@@ -1,32 +1,41 @@
 #include <stdio.h>
+#include <memory>
 
 #include "Renderer.hxx"
-
-#ifdef _WIN32
 #include "RenderBackendD3D12.hxx"
-#endif
+#include "RenderBackendVulkan.hxx"
+#include "RenderBackend.hxx"
 
-namespace BrokenBytes::Cyanite::Engine::Rendering {
-Renderer::Renderer(
-	Window window,
-	uint16_t width,
-	uint16_t height,
-	RendererBackendType backend) {
-#ifdef _WIN32
-	auto renderer = new RenderBackendD3D12(window, width, height);
-	this->_backend =
-		std::unique_ptr<RenderBackend>(renderer);
-#endif
+
+using namespace BrokenBytes::Cyanite::Engine::Rendering;
+
+std::unique_ptr<RenderBackend> _backend;
+
+	auto RendererInit(
+		Window window,
+		uint16_t width,
+		uint16_t height,
+		RendererBackendType backend) -> void {
+		switch (backend)
+		{
+		case Vulkan: {
+			_backend =
+				std::make_unique<RenderBackendVulkan>(window, width, height);
+			break;
+		}
+		case Direct3D12: {
+			
+		}
+		
+		default:
+			break;
+		}
+	}
+
+auto RendererUpdate() -> void {
+
 }
 
-auto Renderer::Init() -> void {
-}
-
-auto Renderer::Update() -> void {
-
-}
-
-auto Renderer::Deinit() -> void {
+auto RendererDeinit() -> void {
     
-}
 }

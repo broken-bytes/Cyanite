@@ -1,5 +1,5 @@
 import WinSDK
-import SDLRaw
+import SDL2
 
 var engine: Engine!
 
@@ -23,12 +23,11 @@ internal func addEvent(of type: Int64, with data: Int64) {
 
 public class Engine {
     let window: HWND
-    let sdl: SDLService
 
     public init(with window: HWND) {
         self.window = window
         loggerInit()
-        self.sdl = SDLService()
+        sysOut(message: "Engine initialized", with: .Verbose)
     }
 
     deinit {

@@ -22,7 +22,6 @@ public:
     auto Run() -> void;
 private:
     Events::EventQueue _eventQueue;
-    std::unique_ptr<Rendering::Renderer> _renderer;
     EntityRegistry _entityRegistry;
 };
 }

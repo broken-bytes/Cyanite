@@ -44,23 +44,19 @@ set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
 endif()
 
 if(WIN32)
-add_executable(${CYANITE} WIN32 ${SRC})
+add_library(${CYANITE} ${SRC})
 
 set(SRC_WIN src/core/win32/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
 
-
-SET(SDL_SRC
-    src/SDLx.h
-    src/SDLx.cpp
-)
-
-add_library(SDLx SHARED ${SDL_SRC})
-
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
 add_subdirectory(external/sdl)
+
+target_link_libraries(${CYANITE} PUBLIC SDL2)
+target_link_libraries(${CYANITE} PUBLIC SDL2main)
+target_link_libraries(${CYANITE} PUBLIC msvcrt)
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 target_include_directories(${CYANITE} PUBLIC src)
@@ -68,5 +64,4 @@ target_include_directories(${CYANITE} PUBLIC external/sdl/include)
 target_include_directories(${CYANITE} PUBLIC src/engine/)
 target_include_directories(${CYANITE} PUBLIC src/engine/Events)
 
-target_link_libraries(${CYANITE} PUBLIC SDL2-static)
 

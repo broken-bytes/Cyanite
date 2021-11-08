@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <Globals.hxx>
+#include <memory>
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 	class RenderBackend {

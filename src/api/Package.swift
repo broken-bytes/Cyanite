@@ -5,14 +5,13 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .library(name: "CyaniteScripting", type: .dynamic, targets: ["Internal", "Input", "SDLRaw", "Bridge"]),
+    .executable(name: "CyaniteScripting", targets: ["Internal", "Input", "ControllerKit", "Bridge"]),
   ],
   targets: [
-    .target(
+    .executableTarget(
       name: "Internal",
       dependencies: [
-        "SDLRaw",
-        "Bridge"
+        "Bridge",
       ],
       path: "Internal/",
       exclude: [
@@ -26,6 +25,7 @@ let CyaniteScripting = Package(
     .target(
       name: "Input",
       dependencies: [
+        "ControllerKit"
       ],
       path: "Input/",
       exclude: [
@@ -51,14 +51,30 @@ let CyaniteScripting = Package(
       ]
     ),
     .target(
-      name: "SDLRaw",
+      name: "ControllerKit",
       dependencies: [
       ],
-      path: "SDLRaw/",
+      path: "CK",
       exclude: [
       ],
       cSettings: [
       ],
+
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+     .target(
+      name: "NativeLib",
+      dependencies: [
+      ],
+      path: "Native/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+
       swiftSettings: [
       ],
       linkerSettings: [
