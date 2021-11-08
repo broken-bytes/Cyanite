@@ -44,9 +44,9 @@ set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
 endif()
 
 if(WIN32)
-add_library(${CYANITE} ${SRC})
+add_library(${CYANITE} SHARED ${SRC})
 
-set(SRC_WIN src/core/win32/Main.cxx)
+set(SRC_WIN src/core/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
 
@@ -56,7 +56,6 @@ add_subdirectory(external/sdl)
 
 target_link_libraries(${CYANITE} PUBLIC SDL2)
 target_link_libraries(${CYANITE} PUBLIC SDL2main)
-target_link_libraries(${CYANITE} PUBLIC msvcrt)
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 target_include_directories(${CYANITE} PUBLIC src)
