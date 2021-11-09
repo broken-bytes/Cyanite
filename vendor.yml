@@ -1,3 +1,4 @@
 # Apply override to all files in the directory
 external/*** linguist-vendored
-**/**/CMakeLists.txt linguist-vendored
+CMakeLists.txt linguist-vendored
+*.cmake linguist-vendored
