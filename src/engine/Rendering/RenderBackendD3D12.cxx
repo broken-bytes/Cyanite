@@ -1,18 +1,19 @@
 #include <winrt/base.h>
 #include "RenderBackendD3D12.hxx"
-
+#include <SDL.h>
 using namespace winrt;
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
-
 	RenderBackendD3D12::RenderBackendD3D12(
-		Window window,
-		uint16_t width,
-		uint16_t height): RenderBackend(window, width, height) {}
+		SDL_Window* window,
+		uint32_t width,
+		uint32_t height): RenderBackend(window, width, height) {}
 
 	RenderBackendD3D12::~RenderBackendD3D12() {}
 
-	auto RenderBackendD3D12::Init() -> void {}
+	auto RenderBackendD3D12::Init() -> uint8_t {
+		return EXIT_FAILURE;
+	}
 
 	auto RenderBackendD3D12::Update() -> void {}
 

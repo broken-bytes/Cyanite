@@ -1,13 +1,13 @@
 #include <memory>
 #include <thread>
 #include <mutex>
-
+#include <iostream>
+#include <SDL.h>
 #include <Globals.hxx>
 
 #include "Rendering/Renderer.hxx"
 #include "CyaniteEngine.hxx"
 
-#include <iostream>
 
 
 #include "InputEvent.hxx"
@@ -18,15 +18,10 @@
 namespace BrokenBytes::Cyanite::Engine {
 	uint64_t count = 0;
 	std::mutex mutex;
-	CyaniteEngine::CyaniteEngine(Window window, uint16_t width, uint16_t height) {
+	CyaniteEngine::CyaniteEngine(SDL_Window* window, uint16_t width, uint16_t height) {
 		CreateLogger();
 #if _WIN32
-		this->_renderer = std::make_unique<Rendering::Renderer>(
-			window,
-			width,
-			height,
-			Rendering::RendererBackendType::Direct3D12);
-		this->_renderer->Init();
+		RendererInit(window, width, height, Vulkan);
 #elif __APPLE__
 		auto ren = new Rendering::Renderer(Rendering::RendererBackendType::Metal);
 #else
@@ -45,6 +40,6 @@ namespace BrokenBytes::Cyanite::Engine {
 			result = dynamic_cast<Events::MouseEvent*>(event.get()) != nullptr;
 			//if (result) Log({ "IS Input", "The event is a mouse event" });
 		}
-		this->_renderer->Update();
+		RendererUpdate();
 	}
 }

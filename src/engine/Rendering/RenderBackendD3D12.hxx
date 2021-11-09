@@ -5,36 +5,39 @@
 #include <dxgi1_6.h>
 #include <cstdint>
 #include <winrt/base.h>
-
+#include <SDL.h>
 
 #include "Camera.hxx"
 #include "Light.hxx"
 #include "RenderBackend.hxx"
 #include "d3d12/FrameResource.hxx"
 
+
 using namespace winrt;
 
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
-	constexpr uint8_t FrameCount = 2;
-	constexpr uint8_t Contexts = 4;
-	constexpr uint8_t CommandLists = 16;
 	class RenderBackendD3D12 : public RenderBackend {
 	public:
-		RenderBackendD3D12(Window window, uint16_t width, uint16_t height);
+		RenderBackendD3D12(SDL_Window* window, uint32_t width, uint32_t height);
 		~RenderBackendD3D12();
-		auto Init() -> void override;
+		auto Init() -> uint8_t;
 		auto Update() -> void override;
 		auto Render() -> void override;
 		auto Deinit() -> void override;
 		auto VRAM() -> uint64_t override;
 	private:
+		// Config
+		static const uint8_t FrameCount = 2;
+		static const uint8_t Contexts = 4;
+		static const uint8_t CommandLists = 16;
+
 		// Pipeline objects
 		CD3DX12_VIEWPORT _viewport;
 		CD3DX12_RECT _scissorsRect;
 		com_ptr<IDXGISwapChain4> _swapChain;
 		com_ptr<ID3D12Device8> _device;
-		std::array<com_ptr<ID3D12Resource2>, FrameCount> _renderTargets;
+		std::array<com_ptr<ID3D12Resource2>, RenderBackendD3D12::FrameCount> _renderTargets;
 		com_ptr<ID3D12Resource2> _depthStencil;
 		com_ptr<ID3D12CommandAllocator> _commandAllocator;
 		com_ptr<ID3D12CommandQueue> _commandQueue;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <uuid/uuid.h>
+#include <uuid.h>
 
 
 namespace BrokenBytes::Cyanite::Engine {

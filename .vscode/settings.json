@@ -1,3 +1,9 @@
 {
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "array": "c",
+        "vector": "c",
+        "xstring": "c",
+        "xutility": "c"
+    }
 }

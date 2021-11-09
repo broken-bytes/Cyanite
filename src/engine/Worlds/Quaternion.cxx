@@ -5,7 +5,7 @@
 #include "Vector3D.hxx"
 
 namespace BrokenBytes::Cyanite::Engine::World {
-#ifdef MSVC
+#ifdef _WIN32
 constexpr double PI = std::numbers::pi;
 #elif __APPLE__
 constexpr double PI = 3.14;

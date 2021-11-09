@@ -17,60 +17,58 @@ public enum LogLevel: UInt {
     case FatalError
 }
 
-public class Logger {
-    fileprivate var logLib: HINSTANCE!
-    fileprivate var console: HANDLE!
+fileprivate var logLib: HINSTANCE!
+fileprivate var console: HANDLE!
 
-    
-    init() {
-        if(AllocConsole()) {
-            AttachConsole(0)
-            self.console = GetStdHandle(STD_OUTPUT_HANDLE)
-            SetConsoleMode(self.console, CP_UNICODE_8)
-       }
-       self.log(message: "String \u{1F389}", with: .Error)
-    }
+public func loggerInit() {
+	//AllocConsole()
+    //AttachConsole(0)
+	//SetConsoleTitleA("CYANITE");
 
-    public func log(message: String, with level: LogLevel) {
+    //console = GetStdHandle(STD_OUTPUT_HANDLE)
+    //SetConsoleMode(console, CP_UNICODE_8)
+}
+
+public func sysOut(message: String, with level: LogLevel) {
         let date = Date()
         let dateStr = date.description
         var written: DWORD = 0
-        withUnsafePointer(to: message.count + dateStr.count + 3) { ptr in 
-        	switch (level) {
+        withUnsafePointer(to: message.count + dateStr.count + 4) { ptr in 
+        	/*
+			switch (level) {
 	            case .Verbose:
 		            SetConsoleTextAttribute(
 			            console,
 			            0x0F);
 		break;
-	case .Info:
+	case LogLevel.Info:
 		SetConsoleTextAttribute(
 			console,
 			0x07);
 		break;
-	case .Warning:
+	case LogLevel.Warning:
 		SetConsoleTextAttribute(
 			console,
 			0x06);
 		break;
-	case .Error:
+	case LogLevel.Error:
 		SetConsoleTextAttribute(
 			console,
 			0x04);
 		break;
-	case .FatalError:
+	case LogLevel.FatalError:
 		SetConsoleTextAttribute(
 			console,
 			0x0D);
 		break;
 	}
               WriteConsoleA(
-                    self.console,
-		            Date().description + " | " + message,
+                    console,
+		            Date().description + " | " + message + "\n",
 		            UnsafeRawPointer(ptr).load(as: UInt32.self),
 		            &written,
 		            nil);
+					*/
+					OutputDebugStringA( Date().description + " | " + message + "\n")
         }
     }
-}
-
-

@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20 /await")
+endif()
 if(WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /await")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -45,18 +44,27 @@ set(MACOSX_BUNDLE_GUI_IDENTIFIER ${ID})
 endif()
 
 if(WIN32)
-add_executable(${CYANITE} WIN32 ${SRC})
+add_library(${CYANITE} SHARED ${SRC})
 
-set(SRC_WIN src/core/win32/Main.cxx)
+set(SRC_WIN src/core/Main.cxx)
 target_sources(${CYANITE} PUBLIC ${SRC_WIN})
 endif()
 
 add_subdirectory(src/engine)
 add_subdirectory(src/editor)
+add_subdirectory(external/sdl)
+
+find_package(Vulkan REQUIRED FATAL_ERROR)
+
+target_link_libraries(${CYANITE} PUBLIC SDL2)
+target_link_libraries(${CYANITE} PUBLIC SDL2main)
+target_link_libraries(${CYANITE} PUBLIC Rendering)
+target_link_libraries(${CYANITE} PUBLIC Worlds)
+target_link_libraries(${CYANITE} PUBLIC Vulkan::Vulkan)
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
-
 target_include_directories(${CYANITE} PUBLIC src)
+target_include_directories(${CYANITE} PUBLIC external/sdl/include)
 target_include_directories(${CYANITE} PUBLIC src/engine/)
 target_include_directories(${CYANITE} PUBLIC src/engine/Events)
 
