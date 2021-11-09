@@ -12,7 +12,7 @@ class Cyanite {
         CyaniteInit { 
             CyanitePollEvent { hasEvent, event in
                 if hasEvent {
-                    print(event!.pointee.Type)
+                    //print(event!.pointee.Type)
                 }
             }
         }

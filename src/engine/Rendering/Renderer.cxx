@@ -7,15 +7,16 @@
 #include "RenderBackend.hxx"
 
 
+
 using namespace BrokenBytes::Cyanite::Engine::Rendering;
 
 std::unique_ptr<RenderBackend> _backend;
 
 	auto RendererInit(
-		Window window,
+		SDL_Window* window,
 		uint16_t width,
 		uint16_t height,
-		RendererBackendType backend) -> void {
+		RendererBackendType backend) -> uint8_t {
 		switch (backend)
 		{
 		case Vulkan: {
@@ -30,6 +31,8 @@ std::unique_ptr<RenderBackend> _backend;
 		default:
 			break;
 		}
+
+		return _backend->Init();
 	}
 
 auto RendererUpdate() -> void {
@@ -37,5 +40,5 @@ auto RendererUpdate() -> void {
 }
 
 auto RendererDeinit() -> void {
-    
+	_backend->Deinit();
 }

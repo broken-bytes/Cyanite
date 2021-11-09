@@ -103,3 +103,9 @@
 [submodule "external/sdl"]
 	path = external/sdl
 	url = https://github.com/libsdl-org/SDL.git
+[submodule "external/vulkanhpp"]
+	path = external/vulkanhpp
+	url = https://github.com/KhronosGroup/Vulkan-Hpp.git
+[submodule "external/eigen"]
+	path = external/eigen
+	url = https://gitlab.com/libeigen/eigen.git

@@ -54,8 +54,13 @@ add_subdirectory(src/engine)
 add_subdirectory(src/editor)
 add_subdirectory(external/sdl)
 
+find_package(Vulkan REQUIRED FATAL_ERROR)
+
 target_link_libraries(${CYANITE} PUBLIC SDL2)
 target_link_libraries(${CYANITE} PUBLIC SDL2main)
+target_link_libraries(${CYANITE} PUBLIC Rendering)
+target_link_libraries(${CYANITE} PUBLIC Worlds)
+target_link_libraries(${CYANITE} PUBLIC Vulkan::Vulkan)
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 target_include_directories(${CYANITE} PUBLIC src)

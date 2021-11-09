@@ -10,6 +10,7 @@
 #include "Main.hxx"
 #include <Windows.h>
 #include <iostream>
+#include "Rendering/Renderer.hxx"
 //#include <InputEvent.hxx>
 //#include <MouseEvent.hxx>
 
@@ -33,23 +34,26 @@ void CyaniteInit(Update update) {
 			str.str().c_str(),
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
-			640,
-			480,
-			0
+			1280,
+			720,
+			SDL_WINDOW_VULKAN
 		);
+
 	SDL_SysWMinfo winInfo = {};
 	SDL_GetWindowWMInfo(window, &winInfo);
 	mainWindow = window;
-#ifdef _WIN32
-	HWND hwnd = winInfo.info.win.window;
 	bool quit = false;
 	SDL_Event event;
+
+	RendererInit(mainWindow, 640, 480, Vulkan);
 
 	while(!quit) {
 		update();
 	}
 
-#endif // _WIN32
+	RendererDeinit();
+	SDL_DestroyWindow(window);
+
 }
 
 void CyanitePollEvent(EventFunc completion) {

@@ -23,12 +23,14 @@ target_sources(
     RenderBackendVulkan.hxx
     RenderBackendVulkan.cxx
     vulkan/GPU.cxx
+    vulkan/DeviceInfo.hxx
     vulkan/CommandQueue.cxx
     )
-target_link_libraries(Rendering PRIVATE
+target_link_libraries(Rendering PUBLIC
     d3d12.lib
     dxgi.lib
     dxguid.lib
+    
 )
 else()
 target_sources(Rendering PUBLIC RenderBackendVulkan.hxx RenderBackendVulkan.cxx)
@@ -40,3 +42,12 @@ target_include_directories(Rendering
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/src/engine
     )
+
+target_include_directories(Rendering
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/external/vulkanhpp
+     ${CMAKE_SOURCE_DIR}/external/vulkanhpp/Vulkan-Headers/include
+    ${CMAKE_SOURCE_DIR}/external/sdl/include
+
+    )
+

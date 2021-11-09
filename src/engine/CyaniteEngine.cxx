@@ -1,13 +1,13 @@
 #include <memory>
 #include <thread>
 #include <mutex>
-
+#include <iostream>
+#include <SDL.h>
 #include <Globals.hxx>
 
 #include "Rendering/Renderer.hxx"
 #include "CyaniteEngine.hxx"
 
-#include <iostream>
 
 
 #include "InputEvent.hxx"
@@ -18,7 +18,7 @@
 namespace BrokenBytes::Cyanite::Engine {
 	uint64_t count = 0;
 	std::mutex mutex;
-	CyaniteEngine::CyaniteEngine(Window window, uint16_t width, uint16_t height) {
+	CyaniteEngine::CyaniteEngine(SDL_Window* window, uint16_t width, uint16_t height) {
 		CreateLogger();
 #if _WIN32
 		RendererInit(window, width, height, Vulkan);

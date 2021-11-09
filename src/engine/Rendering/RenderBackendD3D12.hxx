@@ -5,12 +5,13 @@
 #include <dxgi1_6.h>
 #include <cstdint>
 #include <winrt/base.h>
-
+#include <SDL.h>
 
 #include "Camera.hxx"
 #include "Light.hxx"
 #include "RenderBackend.hxx"
 #include "d3d12/FrameResource.hxx"
+
 
 using namespace winrt;
 
@@ -18,9 +19,9 @@ using namespace winrt;
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 	class RenderBackendD3D12 : public RenderBackend {
 	public:
-		RenderBackendD3D12(Window window, uint16_t width, uint16_t height);
+		RenderBackendD3D12(SDL_Window* window, uint16_t width, uint16_t height);
 		~RenderBackendD3D12();
-		auto Init() -> void override;
+		auto Init() -> uint8_t;
 		auto Update() -> void override;
 		auto Render() -> void override;
 		auto Deinit() -> void override;

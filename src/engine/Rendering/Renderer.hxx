@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <Globals.hxx>
 #include "Color.hxx"
+#include <SDL.h>
 
 enum RendererBackendType : uint8_t {
 	OpenGL,
@@ -12,11 +13,11 @@ enum RendererBackendType : uint8_t {
 };
 
 auto RendererInit(
-	Window window,
+	SDL_Window* window,
 	uint16_t width,
 	uint16_t height,
 	RendererBackendType backend
-) -> void;
+) -> uint8_t;
 auto RendererUpdate() -> void;
 auto RendererDeinit() -> void;
 
