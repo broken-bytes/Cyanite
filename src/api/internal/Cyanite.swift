@@ -12,7 +12,9 @@ class Cyanite {
         CyaniteInit { 
             CyanitePollEvent { hasEvent, event in
                 if hasEvent {
-                    //print(event!.pointee.Type)
+                    if(event!.pointee.Type.rawValue == 5) {
+                        CyaniteDeinit()
+                    }
                 }
             }
         }

@@ -19,7 +19,7 @@ using namespace winrt;
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 	class RenderBackendD3D12 : public RenderBackend {
 	public:
-		RenderBackendD3D12(SDL_Window* window, uint16_t width, uint16_t height);
+		RenderBackendD3D12(SDL_Window* window, uint32_t width, uint32_t height);
 		~RenderBackendD3D12();
 		auto Init() -> uint8_t;
 		auto Update() -> void override;

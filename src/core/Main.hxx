@@ -17,7 +17,8 @@ extern "C" {
 		EVENT_MOUSE_BTN,
 		EVENT_KEYBOARD_BTN,
 		EVENT_CONTROLLER_BTN,
-		EVENT_CONTROLLER_MOVE
+		EVENT_CONTROLLER_MOVE,
+		EVENT_EXIT
 	} typedef EventType;
 
 	struct MouseMoveEvent {
@@ -47,6 +48,9 @@ extern "C" {
 		SWIFT_NAME(CyaniteInit(update:));
 	DllExport void CyanitePollEvent(EventFunc)
 		SWIFT_NAME(CyaniteInit(completion:));
+	DllExport void CyaniteDeinit()
+		SWIFT_NAME(CyaniteDeinit(:));
+
 
 #ifdef __cplusplus
 }

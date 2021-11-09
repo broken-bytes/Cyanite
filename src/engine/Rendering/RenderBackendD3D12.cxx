@@ -6,8 +6,8 @@ using namespace winrt;
 namespace BrokenBytes::Cyanite::Engine::Rendering {
 	RenderBackendD3D12::RenderBackendD3D12(
 		SDL_Window* window,
-		uint16_t width,
-		uint16_t height): RenderBackend(window, width, height) {}
+		uint32_t width,
+		uint32_t height): RenderBackend(window, width, height) {}
 
 	RenderBackendD3D12::~RenderBackendD3D12() {}
 

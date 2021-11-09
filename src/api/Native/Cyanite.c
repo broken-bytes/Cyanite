@@ -4,8 +4,11 @@
 
 typedef int(__stdcall* StartFunc)(Update);
 typedef void(__stdcall* EventPollFuncPtr)(EventFunc);
+typedef int(__stdcall* EndFunc)();
 
 EventPollFuncPtr EventPollFunc;
+EndFunc CyaniteEndFunc;
+
 
 void CyaniteInit(Update update) {
 	//FreeConsole();
@@ -21,10 +24,19 @@ void CyaniteInit(Update update) {
 		engineModule,
 		"CyanitePollEvent");
 
+	CyaniteEndFunc = (EndFunc)GetProcAddress(
+		engineModule,
+		"CyaniteDeinit");
+
 	CyaniteCore(update);
 }
 
 void CyanitePollEvent(EventFunc e) {
 	EventPollFunc(e);
 }
+
+void CyaniteDeinit() {
+	CyaniteEndFunc();
+}
+
 #endif

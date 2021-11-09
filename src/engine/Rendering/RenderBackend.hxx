@@ -18,7 +18,6 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		virtual auto Render() -> void = 0;
 		virtual auto Deinit() -> void = 0;
 		virtual ~RenderBackend() {
-			
 		}
 		/// <summary>
 		/// The VRAM in Bytes
@@ -27,8 +26,8 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		virtual auto VRAM()->uint64_t = 0;
 	protected:
 		SDL_Window* _window;
-		uint16_t _width;
-		uint16_t _height;
+		uint32_t _width;
+		uint32_t _height;
 	};
 }
 

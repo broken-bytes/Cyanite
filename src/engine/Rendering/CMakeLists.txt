@@ -24,6 +24,7 @@ target_sources(
     RenderBackendVulkan.cxx
     vulkan/GPU.cxx
     vulkan/DeviceInfo.hxx
+    vulkan/Swapchain.hxx
     vulkan/CommandQueue.cxx
     )
 target_link_libraries(Rendering PUBLIC

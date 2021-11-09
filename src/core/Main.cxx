@@ -21,6 +21,7 @@ constexpr char NAME[] = "Cyanite";
 constexpr char VERSION[] = "0.01a";
 
 SDL_Window* mainWindow;
+bool quit = false;
 
 void RunSwiftEngine(HWND hwnd);
 void HandleInput();
@@ -42,7 +43,6 @@ void CyaniteInit(Update update) {
 	SDL_SysWMinfo winInfo = {};
 	SDL_GetWindowWMInfo(window, &winInfo);
 	mainWindow = window;
-	bool quit = false;
 	SDL_Event event;
 
 	RendererInit(mainWindow, 640, 480, Vulkan);
@@ -50,10 +50,9 @@ void CyaniteInit(Update update) {
 	while(!quit) {
 		update();
 	}
-
 	RendererDeinit();
-	SDL_DestroyWindow(window);
-
+	SDL_DestroyWindow(mainWindow);
+	std::exit(0);
 }
 
 void CyanitePollEvent(EventFunc completion) {
@@ -74,11 +73,18 @@ void CyanitePollEvent(EventFunc completion) {
 			e.Data.MouseBtn = MouseBtnEvent{ };
 			e.Data.MouseBtn.Btn = event.button.which;
 			break;
+		case SDL_QUIT:
+			e.Type = EVENT_EXIT;
+			break;
 		default:
 			break;
 		}
 	}
 	completion(hasEvent, &e);
+}
+
+auto CyaniteDeinit() -> void {
+	quit = true;
 }
 
 void HandleInput() {
