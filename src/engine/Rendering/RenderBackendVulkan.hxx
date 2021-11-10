@@ -7,8 +7,6 @@
 
 #include "vulkan/DeviceInfo.hxx"
 #include "vulkan/Swapchain.hxx"
-#include "Camera.hxx"
-#include "Light.hxx"
 #include "RenderBackend.hxx"
 
 
