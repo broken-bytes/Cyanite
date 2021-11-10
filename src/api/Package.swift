@@ -5,10 +5,7 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .executable(name: "CyaniteScripting", targets: ["Internal", "Input", "Bridge", "NativeLib"]),
-  ],
-  dependencies: [
-    .package(url: "https://github.com/realm/SwiftLint.git", from: "0.37.0"),
+    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "NativeLib"]),
   ],
   targets: [
     .executableTarget(
@@ -35,9 +32,11 @@ let CyaniteScripting = Package(
       ],
       path: "Input/",
       exclude: [
-        "CMakeLists.txt",
       ],
       swiftSettings: [
+            .unsafeFlags(["-L", "./"]),
+            .unsafeFlags(["-I", "./"]),
+            .unsafeFlags(["-lCyanite"]),
       ],
       linkerSettings: [
       ]

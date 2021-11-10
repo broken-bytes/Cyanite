@@ -11,8 +11,7 @@
 #include <Windows.h>
 #include <iostream>
 #include "Rendering/Renderer.hxx"
-//#include <InputEvent.hxx>
-//#include <MouseEvent.hxx>
+
 
 
 typedef int(__stdcall* StartFunc)(HWND);
@@ -22,9 +21,6 @@ constexpr char VERSION[] = "0.01a";
 
 SDL_Window* mainWindow;
 bool quit = false;
-
-void RunSwiftEngine(HWND hwnd);
-void HandleInput();
 
 void CyaniteInit(Update update) {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
@@ -85,17 +81,4 @@ void CyanitePollEvent(EventFunc completion) {
 
 auto CyaniteDeinit() -> void {
 	quit = true;
-}
-
-void HandleInput() {
-
-}
-
-void RunSwiftEngine(HWND hwnd) {
-	/* get handle to dll */
-	
-
-	//FreeLibrary(hGetProcIDDLL);
-
-	/* The return val from the dll */
 }
