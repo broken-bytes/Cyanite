@@ -36,6 +36,7 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		// Stored props
 		VkFormat _scImageFormat = {};
 		VkExtent2D _scExtent = {};
+		DeviceInfo _deviceInfo;
 
 #pragma region Load
 		// --- MARK: Load Methods

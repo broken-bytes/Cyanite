@@ -1,14 +1,10 @@
 import NativeLib
 import WinSDK
 
-
-func update() -> Void{
-
-}
-
 @main
 class Cyanite {
     static func main() -> Void { 
+        dlopen("Cyanite.dll",RTLD_NOW)
         CyaniteInit { 
             CyanitePollEvent { hasEvent, event in
                 if hasEvent {

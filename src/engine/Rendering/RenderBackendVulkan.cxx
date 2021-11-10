@@ -64,9 +64,8 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		std::cout << "Deinit Render Backend Vulkan" << std::endl;
 	}
 
-	auto RenderBackendVulkan::VRAM() -> uint64_t
-	{
-		return 0;
+	auto RenderBackendVulkan::VRAM() -> uint64_t {
+		return static_cast<uint64_t>(_deviceInfo.VRAM);
 	}
 
 	auto RenderBackendVulkan::LoadPipeline() -> void
@@ -449,6 +448,7 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		}
 
 		_vDevice = vDevice;
+		_deviceInfo = deviceInfo;
 
 		VkQueue graphicsQueue = {};
 		VkQueue presentationQueue = {};
