@@ -5,25 +5,24 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "NativeLib"]),
+    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge"]),
   ],
   targets: [
-    .executableTarget(
+    .target(
       name: "Internal",
       dependencies: [
-        "Bridge",
-        "NativeLib"
+        "Bridge"
       ],
       path: "Internal/",
       exclude: [
-        "CMakeLists.txt",
       ],
       swiftSettings: [
-        .unsafeFlags(["-D_WINDOWS_"]),
+            .unsafeFlags(["-L", "./"]),
+            .unsafeFlags(["-I", "./"]),
+            .unsafeFlags(["-lCyaniteCore"]),
+            .unsafeFlags(["-D_WIN32"], .when(platforms: [.windows])),
       ],
       linkerSettings: [
-        .linkedLibrary("User32"),
-        .linkedLibrary("ComCtl32"),
       ]
     ),
     .target(
@@ -36,7 +35,7 @@ let CyaniteScripting = Package(
       swiftSettings: [
             .unsafeFlags(["-L", "./"]),
             .unsafeFlags(["-I", "./"]),
-            .unsafeFlags(["-lCyanite"]),
+            .unsafeFlags(["-lCyaniteCore"]),
       ],
       linkerSettings: [
       ]
@@ -53,19 +52,6 @@ let CyaniteScripting = Package(
       swiftSettings: [
       ],
       linkerSettings: [
-      ]
-    ),
-     .target(
-      name: "NativeLib",
-      dependencies: [
-      ],
-      path: "Native/",
-      exclude: [
-      ],
-      cSettings: [
-
-      ],
-      swiftSettings: [
       ]
     ),
   ]

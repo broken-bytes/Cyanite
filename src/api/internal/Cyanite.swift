@@ -1,12 +1,9 @@
-import NativeLib
-import WinSDK
 import Foundation
 
-
-@_cdecl("CyaniteInit") func cyaniteInit() {
-
+@_cdecl("AssemblyInit") func assemblyInit() {
 }
 
 class Cyanite {
+  init() {
+  }
 }
-

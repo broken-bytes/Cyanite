@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <Globals.hxx>
 #include <memory>
 #include <SDL.h>
 

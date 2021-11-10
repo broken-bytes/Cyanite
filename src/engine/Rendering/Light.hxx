@@ -1,6 +1,6 @@
 #pragma once
 
-#include <../engine/Worlds/Matrix4x4.hxx>
+#include <Matrix4x4.hxx>
 #include "Color.hxx"
 
 namespace BrokenBytes::Cyanite::Engine::Rendering {
