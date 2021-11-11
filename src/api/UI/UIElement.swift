@@ -6,11 +6,8 @@
 //
 
 import Foundation
-import UI
 
 
-class test {
-    init() {
-        var view: UIView = UIView()
-    }
+public protocol UIElement {
+    
 }

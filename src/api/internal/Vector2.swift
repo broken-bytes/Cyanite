@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Vector2 {
+public struct Vector2 {
     let x: Int32
     let y: Int32
 }

@@ -16,7 +16,7 @@ import Foundation
 import Foundation
 
 
-struct Vector3 {
+public struct Vector3 {
     let x: Int32
     let y: Int32
     let z: Int32
