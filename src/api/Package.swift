@@ -21,6 +21,7 @@ let CyaniteScripting = Package(
             .unsafeFlags(["-I", "./"]),
             .unsafeFlags(["-lCyaniteCore"]),
             .unsafeFlags(["-D_WIN32"], .when(platforms: [.windows])),
+            .unsafeFlags(["-D_OSX"], .when(platforms: [.macOS])),
       ],
       linkerSettings: [
       ]
