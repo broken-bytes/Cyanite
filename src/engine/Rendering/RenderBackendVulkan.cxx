@@ -140,8 +140,6 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 	auto RenderBackendVulkan::CreateVkInstance() -> void {
 		VkApplicationInfo appInfo = {};
 		appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-		appInfo.applicationVersion = VK_MAKE_API_VERSION("a", 0, 0, 1);
-		appInfo.engineVersion = VK_MAKE_API_VERSION("a", 0, 0, 1);
 		appInfo.pApplicationName = "Cyanite";
 		appInfo.pEngineName = "CyaniteEngine";
 		appInfo.apiVersion = VK_API_VERSION_1_2;
@@ -303,8 +301,8 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		// Seperate queues, need to share images
 		if (queues.GraphicsQueue != queues.PresentationQueue) {
 			std::array<uint32_t, 2> queueIndices = {
-				queues.GraphicsQueue,
-				queues.PresentationQueue
+                static_cast<unsigned int>(queues.GraphicsQueue),
+                static_cast<unsigned int>(queues.PresentationQueue)
 			};
 			createInfo.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
 			createInfo.queueFamilyIndexCount = 2;

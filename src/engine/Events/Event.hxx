@@ -3,7 +3,6 @@
 #include <vector>
 #include <typeinfo>
 #include <sstream>
-#include "../Logging/Logger.hxx"
 
 namespace BrokenBytes::Cyanite::Engine::Events {
     struct Event {

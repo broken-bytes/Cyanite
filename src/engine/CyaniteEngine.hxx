@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <vector>
-#include <Globals.hxx>
 #include <SDL.h>
 
 #include "Worlds/World.hxx"

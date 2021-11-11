@@ -25,8 +25,7 @@ target_link_libraries(Rendering PUBLIC Vulkan::Vulkan)
 target_include_directories(Rendering
     PUBLIC
     ${CMAKE_SOURCE_DIR}/src/engine/Worlds
-    ${CMAKE_SOURCE_DIR}/external/vulkanhpp
-    ${CMAKE_SOURCE_DIR}/external/vulkanhpp/Vulkan-Headers/include
+    /usr/local/include/vulkan
     ${CMAKE_SOURCE_DIR}/external/sdl/include
 )
 

@@ -8,6 +8,6 @@
 import Foundation
 
 
-public protocol Component {
+struct TransformComponent: Component {
     
 }

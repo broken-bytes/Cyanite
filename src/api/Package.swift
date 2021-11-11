@@ -5,7 +5,7 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge"]),
+    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "ECS", "Assembly"]),
   ],
   targets: [
     .target(
@@ -51,6 +51,36 @@ let CyaniteScripting = Package(
       cSettings: [
       ],
       swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "ECS",
+      dependencies: [
+      ],
+      path: "ECS/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Assembly",
+      dependencies: [
+        "ECS"
+      ],
+      path: "Assembly/",
+      exclude: [
+      ],
+      swiftSettings: [
+            .unsafeFlags(["-L", "./"]),
+            .unsafeFlags(["-I", "./"]),
+            .unsafeFlags(["-lCyaniteCore"]),
       ],
       linkerSettings: [
       ]

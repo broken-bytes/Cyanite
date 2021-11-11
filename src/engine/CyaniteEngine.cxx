@@ -3,29 +3,34 @@
 #include <mutex>
 #include <iostream>
 #include <SDL.h>
-#include <Globals.hxx>
 
 #include "Rendering/Renderer.hxx"
 #include "CyaniteEngine.hxx"
-
-
-
 #include "InputEvent.hxx"
 #include "MouseEvent.hxx"
 #include "Transform.hxx"
-#include "Logging/Logger.hxx"
+
+
+using namespace BrokenBytes::Cyanite::Engine;
+
+std::unique_ptr<CyaniteEngine> engine;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+auto CyaniteCoreInit(SDL_Window* window, uint16_t width, uint16_t height) -> void {
+    engine = std::make_unique<CyaniteEngine>(window, width, height);
+}
+#ifdef __cplusplus
+}
+#endif
+
 
 namespace BrokenBytes::Cyanite::Engine {
 	uint64_t count = 0;
 	std::mutex mutex;
 	CyaniteEngine::CyaniteEngine(SDL_Window* window, uint16_t width, uint16_t height) {
-		CreateLogger();
-#if _WIN32
-		RendererInit(window, width, height, Vulkan);
-#elif __APPLE__
-		auto ren = new Rendering::Renderer(Rendering::RendererBackendType::Metal);
-#else
-#endif
+        RendererInit(window, width, height, Vulkan);
 	}
 
 	auto CyaniteEngine::AddEvent(Events::Event* e) -> void {

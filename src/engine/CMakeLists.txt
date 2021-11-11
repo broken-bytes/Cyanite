@@ -12,7 +12,6 @@ add_library(${Engine} SHARED CyaniteEngine.hxx CyaniteEngine.cxx EntityRegistry.
  
 add_subdirectory(Rendering)
 add_subdirectory(Worlds)
-add_subdirectory(Logging)
 add_subdirectory(Events)
 
 
@@ -26,7 +25,6 @@ target_link_libraries(${Engine} PUBLIC SDL2)
 target_link_libraries(${Engine} PUBLIC SDL2main)
 target_link_libraries(${Engine} PUBLIC Rendering)
 target_link_libraries(${Engine} PUBLIC Worlds)
-target_link_libraries(${Engine} PUBLIC Logging)
 target_link_libraries(${Engine} PUBLIC Events)
 
 target_compile_definitions(${Engine} PUBLIC -Dawait)

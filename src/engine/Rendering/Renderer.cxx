@@ -3,7 +3,6 @@
 #include <iostream>
 
 #include "Renderer.hxx"
-#include "RenderBackendD3D12.hxx"
 #include "RenderBackendVulkan.hxx"
 #include "RenderBackend.hxx"
 

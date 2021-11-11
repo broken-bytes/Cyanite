@@ -6,10 +6,10 @@
 #include "Component.hxx"
 
 namespace BrokenBytes::Cyanite::Engine {
-	class ComponentNotFoundException : std::exception {
+	class ComponentNotFoundException : std::runtime_error {
 	public:
 		ComponentNotFoundException(std::string message):
-		std::exception(message.c_str()){}
+        std::runtime_error(message) {}
 	private:
 		std::string _name;
 	};

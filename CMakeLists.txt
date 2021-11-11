@@ -26,11 +26,13 @@ set(COPY "© 2021 - Broken Bytes")
 set(SRC src/core/Main.hxx)
 
 
-if(APPLE)
-add_executable(${CYANITE} ${SRC})
 
-set(SRC_OSX src/core/osx/Main.mm)
-target_sources(${CYANITE}  PUBLIC ${SRC_OSX})
+if(APPLE)
+add_executable(${CYANITE} MACOSX_BUNDLE ${SRC})
+set(VK_MVK_macos_surface ON)
+set(SRC_OSX src/core/Main.cxx)
+target_sources(${CYANITE} PUBLIC ${SRC_OSX})
+find_package(SDL2 REQUIRED)
 find_library(COCOA_LIBRARY Cocoa)
 set_target_properties(
     ${CYANITE}
@@ -46,21 +48,17 @@ endif()
 
 if(WIN32)
 add_executable(${CYANITE} WIN32 ${SRC})
-
 set(SRC_WIN src/core/Main.cxx)
-target_sources(${CYANITE} PUBLIC ${SRC_WIN})
+target_link_libraries(${CYANITE} PUBLIC SDL2)
+target_link_libraries(${CYANITE} PUBLIC SDL2main)
+add_subdirectory(external/sdl)
 endif()
-
 
 target_compile_definitions(${CYANITE} PUBLIC -Dawait)
 target_include_directories(${CYANITE} PUBLIC src)
 target_include_directories(${CYANITE} PUBLIC external/sdl/include)
 target_include_directories(${CYANITE} PUBLIC src/engine/)
 target_include_directories(${CYANITE} PUBLIC src/engine/Events)
+target_link_libraries(${CYANITE} PUBLIC SDL2::SDL2)
 
-add_subdirectory(external/sdl)
 add_subdirectory(src/engine)
-target_link_libraries(${CYANITE} PUBLIC SDL2)
-target_link_libraries(${CYANITE} PUBLIC SDL2main)
-
-

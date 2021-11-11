@@ -12,12 +12,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>Assembly</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>Bridge</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CyaniteAssembly</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECS</key>
 		<dict>
 			<key>primary</key>
 			<true/>

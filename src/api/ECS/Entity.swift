@@ -8,15 +8,16 @@
 import Foundation
 
 
-struct Entity {
-    var uuid: UInt32
+public struct Entity {
+    var uuid: String
     var components: [Component]
     
     init(with components: [Component]) {
+        self.uuid = UUID().uuidString
         self.components = components
     }
     
-    func add(component: Component) {
-        self.components.insert(component)
+    mutating func add(component: Component) {
+        self.components.append(component)
     }
 }

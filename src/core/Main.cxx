@@ -1,5 +1,4 @@
 #include <cstdint>
-#include <io.h>
 #include <memory>
 #include <stdio.h>
 #include <fcntl.h>
@@ -7,10 +6,11 @@
 #include <SDL.h>
 #include <SDL_video.h>
 #include <SDL_syswm.h>
-#include <Windows.h>
+#include <SDL_vulkan.h>
 #include <iostream>
+#include <string>
+#include <sstream>
 
-typedef int(__stdcall* StartFunc)(HWND);
 
 constexpr char NAME[] = "Cyanite";
 constexpr char VERSION[] = "0.01a";
@@ -22,6 +22,7 @@ extern "C" {
 #endif // __cplusplus
 
 	int main(int argc, char** argv) {
+        printf("%s\n", "MAIN");
 		bool quit = false;
 		SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_AUDIO | SDL_INIT_EVENTS);
 		std::stringstream str;
@@ -40,6 +41,8 @@ extern "C" {
 				768,
 				SDL_WINDOW_VULKAN
 			);
+        printf("%s\n", SDL_GetError());
+        
 		mainWindow = window;
 
 		SDL_Event event;
