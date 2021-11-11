@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Marcel Kulina on 11.11.21.
 //
@@ -8,8 +8,6 @@
 import Foundation
 
 
-public class Flow {
-    public init() {
-        
-    }
+struct Transform3DComponent: Component {
+    
 }

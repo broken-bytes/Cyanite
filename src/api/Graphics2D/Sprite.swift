@@ -8,8 +8,6 @@
 import Foundation
 
 
-public class Flow {
-    public init() {
-        
-    }
+public struct Sprite {
+    
 }

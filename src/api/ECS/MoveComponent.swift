@@ -1,7 +1,4 @@
 
 
 struct MoveComponent: Component {
-    init() {
-    
-    }
 }

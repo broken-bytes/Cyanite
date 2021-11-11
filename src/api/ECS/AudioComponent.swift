@@ -7,9 +7,9 @@
 
 import Foundation
 
-
-public class Flow {
+public struct AudioComponent: Component {
     public init() {
         
     }
+    
 }

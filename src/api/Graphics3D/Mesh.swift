@@ -6,12 +6,12 @@
 //
 
 import Foundation
+import Math
 
-
-class Mesh {
+public class Mesh {
     private(set) var vertices: [Vector3]
     
-    init(from model: String) {
+    public init(from model: String) {
         vertices = []
     }
 }

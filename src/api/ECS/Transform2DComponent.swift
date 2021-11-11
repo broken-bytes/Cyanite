@@ -8,6 +8,6 @@
 import Foundation
 
 
-struct TransformComponent: Component {
+struct Transform2DComponent: Component {
     
 }

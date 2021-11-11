@@ -8,8 +8,12 @@
 import Foundation
 
 
-public class Flow {
+public struct AudioSource {
     public init() {
+        
+    }
+    
+    public func play(clip named: String, repeat: Bool) {
         
     }
 }

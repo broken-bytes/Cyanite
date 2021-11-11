@@ -5,7 +5,7 @@ import PackageDescription
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
   products: [
-    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "ECS", "UI", "Assembly"]),
+    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "Graphics2D", "Graphics3D", "ECS", "Math", "UI", "Assembly"]),
   ],
   targets: [
     .target(
@@ -60,6 +60,78 @@ let CyaniteScripting = Package(
       dependencies: [
       ],
       path: "ECS/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Graphics2D",
+      dependencies: [
+        "Math"
+      ],
+      path: "Graphics2D/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Graphics3D",
+      dependencies: [
+        "Math"
+      ],
+      path: "Graphics3D/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Audio",
+      dependencies: [
+      ],
+      path: "Audio/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Math",
+      dependencies: [
+      ],
+      path: "Math/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "Time",
+      dependencies: [
+      ],
+      path: "Time/",
       exclude: [
       ],
       cSettings: [

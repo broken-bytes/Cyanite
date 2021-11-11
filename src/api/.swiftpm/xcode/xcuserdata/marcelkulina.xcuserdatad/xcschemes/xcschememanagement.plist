@@ -12,7 +12,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>Assembly</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>Audio</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,12 +47,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>Graphics2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>Graphics3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>Input</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>Internal</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>Math</key>
 		<dict>
 			<key>primary</key>
 			<true/>
