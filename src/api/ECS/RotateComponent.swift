@@ -1,0 +1,4 @@
+
+struct RotateComponent: Component {
+    
+}
