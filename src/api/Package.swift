@@ -4,28 +4,13 @@ import PackageDescription
 
 let CyaniteScripting = Package(
   name: "CyaniteScripting",
+  platforms: [
+          .macOS(.v12),
+    ],
   products: [
-    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Internal", "Input", "Bridge", "Graphics2D", "Graphics3D", "ECS", "Math", "UI", "Assembly"]),
+    .library(name: "CyaniteAssembly", type: .dynamic, targets: ["Input", "Bridge", "Graphics2D", "Graphics3D", "ECS", "Math", "UI", "SystemInfo", "Assembly"]),
   ],
   targets: [
-    .target(
-      name: "Internal",
-      dependencies: [
-        "Bridge"
-      ],
-      path: "Internal/",
-      exclude: [
-      ],
-      swiftSettings: [
-            .unsafeFlags(["-L", "./"]),
-            .unsafeFlags(["-I", "./"]),
-            .unsafeFlags(["-lCyaniteCore"]),
-            .unsafeFlags(["-D_WIN32"], .when(platforms: [.windows])),
-            .unsafeFlags(["-D_OSX"], .when(platforms: [.macOS])),
-      ],
-      linkerSettings: [
-      ]
-    ),
     .target(
       name: "Input",
       dependencies: [
@@ -167,6 +152,22 @@ let CyaniteScripting = Package(
             .unsafeFlags(["-L", "./"]),
             .unsafeFlags(["-I", "./"]),
             .unsafeFlags(["-lCyaniteCore"]),
+            .unsafeFlags(["-D_WIN32"], .when(platforms: [.windows])),
+            .unsafeFlags(["-D_OSX"], .when(platforms: [.macOS])),
+      ],
+      linkerSettings: [
+      ]
+    ),
+    .target(
+      name: "SystemInfo",
+      dependencies: [
+      ],
+      path: "SystemInfo/",
+      exclude: [
+      ],
+      cSettings: [
+      ],
+      swiftSettings: [
       ],
       linkerSettings: [
       ]

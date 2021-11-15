@@ -1,6 +1,5 @@
 
 #include "Entity.hxx"
-
 #include <uuid.h>
 
 namespace BrokenBytes::Cyanite::Engine {

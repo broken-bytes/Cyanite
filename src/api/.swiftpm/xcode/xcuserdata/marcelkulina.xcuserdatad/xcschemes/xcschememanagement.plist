@@ -72,6 +72,21 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>System</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>SystemInfo</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>Time</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>UI</key>
 		<dict>
 			<key>primary</key>

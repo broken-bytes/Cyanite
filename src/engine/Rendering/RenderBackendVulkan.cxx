@@ -30,6 +30,7 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 			BindPhysicalDevice(QueryHighPerformanceGPU());
 			auto caps = GetSwapchainCapabilities(_pDevice, _vSurface);
 			CreateVKSwapchain(caps);
+            LoadPipeline();
 			return EXIT_SUCCESS;
 		}
 		catch (std::runtime_error& err) {
@@ -68,8 +69,8 @@ namespace BrokenBytes::Cyanite::Engine::Rendering {
 		return static_cast<uint64_t>(_deviceInfo.VRAM);
 	}
 
-	auto RenderBackendVulkan::LoadPipeline() -> void
-	{
+	auto RenderBackendVulkan::LoadPipeline() -> void {
+        
 	}
 
 	auto RenderBackendVulkan::LoadAssets() -> void

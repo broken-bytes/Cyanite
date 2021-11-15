@@ -1,13 +1,11 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Marcel Kulina on 11.11.21.
 //
 
 import Foundation
 
-
-public protocol Flow {
-    func run()
+struct Transform3DComponent: Component {
 }

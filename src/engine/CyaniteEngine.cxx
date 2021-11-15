@@ -10,7 +10,6 @@
 #include "MouseEvent.hxx"
 #include "Transform.hxx"
 
-
 using namespace BrokenBytes::Cyanite::Engine;
 
 std::unique_ptr<CyaniteEngine> engine;

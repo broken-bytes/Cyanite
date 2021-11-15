@@ -9,7 +9,11 @@ import Foundation
 import UI
 
 
-class test {
+@_cdecl("AssemblyUserLand") func userCodeInit() {
+    var flow = PlayerFlow()
+}
+
+class UserCode {
     init() {
         var view: UIView = UIView()
     }

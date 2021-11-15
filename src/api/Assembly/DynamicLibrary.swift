@@ -8,7 +8,7 @@ typealias Handle = UnsafeMutableRawPointer
 
 import Foundation
 
-class DynamicLibrary {
+fileprivate class DynamicLibrary {
     var path: String
     var handle: Handle!
 

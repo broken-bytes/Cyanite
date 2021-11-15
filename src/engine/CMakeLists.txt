@@ -13,18 +13,20 @@ add_library(${Engine} SHARED CyaniteEngine.hxx CyaniteEngine.cxx EntityRegistry.
 add_subdirectory(Rendering)
 add_subdirectory(Worlds)
 add_subdirectory(Events)
-
+add_subdirectory(System)
 
 target_include_directories(${Engine} PUBLIC ${CMAKE_SOURCE_DIR}/src/engine/Events)
 target_include_directories(${Engine} PUBLIC ${CMAKE_SOURCE_DIR}/external/GSL/include)
 target_include_directories(${Engine} PUBLIC ${CMAKE_SOURCE_DIR}/external/stduuid/include)
 target_include_directories(${Engine} PUBLIC ${CMAKE_SOURCE_DIR}/external/eventpp/include)
 
+find_package(SDL2 REQUIRED)
 
-target_link_libraries(${Engine} PUBLIC SDL2)
-target_link_libraries(${Engine} PUBLIC SDL2main)
+target_link_libraries(${Engine} PUBLIC SDL2::SDL2)
 target_link_libraries(${Engine} PUBLIC Rendering)
 target_link_libraries(${Engine} PUBLIC Worlds)
 target_link_libraries(${Engine} PUBLIC Events)
+target_link_libraries(${Engine} PUBLIC System)
+
 
 target_compile_definitions(${Engine} PUBLIC -Dawait)
